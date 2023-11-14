@@ -9,6 +9,10 @@ from Management import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root':
+    settings.MEDIA_ROOT}), #serve media files when deployed
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root':
+    settings.STATIC_ROOT}), #serve static files when deployed
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('user/', views.UserView.as_view(), name='user'),
     path('users/', views.users_list, name='users'),
